@@ -4,6 +4,7 @@ import os
 import sys
 import shutil
 import markdown
+from pathlib import Path
 from .mdx_bib.mdx_bib import CitationsExtension
 
 PREPEND_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../"
@@ -119,7 +120,6 @@ def compile(f_head, f_tail, d_out, F):
   echoln("OK!")
 
   echo("Creating output directory...")
-  from pathlib import Path
   Path(d_out).mkdir(parents=True, exist_ok=True)
   echoln("OK!")
 
@@ -135,6 +135,10 @@ def compile(f_head, f_tail, d_out, F):
     echoln("OK!")
     # Join head, body and tail together.
     html = f_head + body + tail
+    # Mkdir output directory if needed.
+    echo("Creating output directory...")
+    Path(os.path.dirname(filename)).mkdir(parents=True, exist_ok=True)
+    echoln("OK!")
     # Write HTML contents to disk.
     echo(f"Writing HTML output for {filename}...")
     with open(f"{d_out}{os.path.splitext(filename)[0]}.html", "w", encoding="utf-8") as f: f.write(html)
