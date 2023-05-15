@@ -1,3 +1,3 @@
-[submodule "ext/mdx_bib"]
-	path = ext/mdx_bib
+[submodule "pymdpages/mdx_bib"]
+	path = pymdpages/mdx_bib
 	url = git@github.com:RenatoGeh/mdx_bib.git

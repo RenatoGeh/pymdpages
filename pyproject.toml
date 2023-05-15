@@ -22,7 +22,7 @@ classifiers = [
 description = "pymdpages: a minimalistic python-markdown static academic pages generator"
 
 [tool.setuptools.packages.find]
-include = ["pymdpages"]
+include = ["pymdpages*"]
 
 [project.urls]
 Repository = "https://github.com/RenatoGeh/pymdpages"

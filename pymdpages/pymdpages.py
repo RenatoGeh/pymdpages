@@ -4,7 +4,7 @@ import os
 import sys
 import shutil
 import markdown
-from ext.mdx_bib.mdx_bib import CitationsExtension
+from .mdx_bib.mdx_bib import CitationsExtension
 
 PREPEND_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../"
 PWD_PATH = os.getcwd() + "/"
