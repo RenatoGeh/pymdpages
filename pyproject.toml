@@ -8,7 +8,7 @@ authors = [
   { name = "Renato Lui Geh", email = "renatogeh@gmail.com" },
 ]
 version = "0.0.1"
-dependencies = ["markdown", "pymdown-extensions", "python-markdown-math"]
+dependencies = ["markdown", "pymdown-extensions", "python-markdown-math", "pybtex"]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
@@ -29,4 +29,4 @@ Repository = "https://github.com/RenatoGeh/pymdpages"
 Issues = "https://github.com/RenatoGeh/pymdpages/issues"
 
 [project.scripts]
-pymdpages = "pymdpages:main"
+pymdpages = "pymdpages.pymdpages:main"

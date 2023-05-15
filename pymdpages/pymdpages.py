@@ -118,6 +118,11 @@ def compile(f_head, f_tail, d_out, F):
   with open(f_head, "r", encoding="utf-8") as f: head = f.read()
   echoln("OK!")
 
+  echo("Creating output directory...")
+  from pathlib import Path
+  Path(d_out).mkdir(parents=True, exist_ok=True)
+  echoln("OK!")
+
   for filename in F:
     # Parse file content.
     echo(f"Parsing {filename}...")
