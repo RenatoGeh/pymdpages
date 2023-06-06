@@ -10,8 +10,8 @@ from .mdx_bib.mdx_bib import CitationsExtension
 PREPEND_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../"
 PWD_PATH = os.getcwd() + "/"
 
-ARGUMENTS = ["head", "tail", "output", "bib", "css", "js", "help"]
-ARGUMENTS_SHORTCUTS = ["e", "t", "o", "b", "c", "j", "h"]
+ARGUMENTS = ["head", "tail", "output", "bib", "css", "js", "assets", "help"]
+ARGUMENTS_SHORTCUTS = ["e", "t", "o", "b", "c", "j", "a", "h"]
 ARGUMENTS_HELP = {
   "head": "Sets the path to the HTML head.",
   "tail": "Sets the path to the HTML tail.",
@@ -19,6 +19,7 @@ ARGUMENTS_HELP = {
   "bib": "Sets the path to the .bib bibliography file.",
   "css": "Sets the path to the css directory.",
   "js": "Sets the path to the js directory.",
+  "assets": "Sets the path to the assets directory.",
   "help": "Prints this help message.",
 }
 ARGUMENTS_VALUES = {
@@ -28,6 +29,7 @@ ARGUMENTS_VALUES = {
   "bib": PWD_PATH + "bib/refs.bib",
   "css": PWD_PATH + "css/",
   "js": PWD_PATH + "js/",
+  "assets": PWD_PATH + "assets/",
   "help": None,
 }
 ARGUMENTS_HEADERS = [f"--{ARGUMENTS[i]}=<val> | -{ARGUMENTS_SHORTCUTS[i]} <val>" \
@@ -86,7 +88,7 @@ def echo(str): print(str, end=' ')
 def echoln(str): print(str)
 
 # Extensions for Python-Markdown.
-extensions = ["extra", "smarty", "meta", "mdx_math", "toc", "admonition",
+extensions = ["extra", "smarty", "meta", "mdx_math", "toc", "admonition", "md_in_html",
               CitationsExtension(bibtex_file=PWD_PATH + "bib/refs.bib", order="unsorted"),
               "pymdownx.highlight", "pymdownx.superfences", "pymdownx.inlinehilite"]
 extension_configs = {
@@ -149,9 +151,10 @@ def main():
   if len(F) > 0:
     # Compile Markdown into HTML.
     compile(A["head"], A["tail"], A["output"], F)
-    # Copy css and js.
+    # Copy assets, css and js.
     shutil.copytree(A["css"], A["output"] + "/css/", dirs_exist_ok=True)
     shutil.copytree(A["js"], A["output"] + "/js/", dirs_exist_ok=True)
+    shutil.copytree(A["assets"], A["output"] + "/assets/", dirs_exist_ok=True)
   else:
     print_help()
     sys.exit(1)
